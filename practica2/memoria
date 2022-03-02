@@ -1,0 +1,18 @@
+### MEMORIA DE SISTEMAS ENCAIXADOS ###
+
+1.
+
+1.1 -> Cando intentamos cargar o número 500 o simulador non o admite, pois supera o límite maximo de 255, é dicir,  8 bits ou 1 byte. Para cargar os números 0x12345678 e 0x3344FF00 empregamos a pseudoinstrucción ldr (LDR en ARM), a cal é traducida polo ensamblador a varias instruccións máquina. Ao empregar esta instrucción o programa ex_1.1 (programa modificado para sumar 0x12345678 e mais 0x3344FF00) funciona sen ningún tipo de problema. os números carganse na memoria ROM de instruccións para ser empregados. Se executamos a instrucción add r3, r1, #8 o ensamblador dinos que ocurreu un erro por estar o valor inmediato fora de rango, isto é porque coa instrucción add só podemos empregar números de 3 bits, e para representar o número 8 é preciso un minimo de 4 bits.
+
+1.2 -> Aparecen instruccións a partires da dirección 0x00180010 porque o ensamblador tenta interpretalo como instruccións pero non son instruccións realmente, só son direccións de memoria. Ocorre por casualidade
+
+1.3 -> Si, podemos observar as operacións lóxicas vistas en clase no programa loxica.s, aparecen:
+ands, orrs, mvns e movs, que son as operacións simplificadas de and, orr, mvn e mov
+
+1.5 -> Observamos as instruccións push, ass, ldr, ldrb, lsls, asrs, movs e str, todas as cales foron vistas en clase.
+
+1.6 -> O programa exemplo_vector.s garda en memoria un vector e mais un valor. Despois vai sumando cada unha das compoñentes do vector co valor e vainas gardando todas na memsa dirección de memoria, sobreescribindoas.
+
+2. -> # FACER PROGRAMAS EN ENSAMBLADOR
+
+
