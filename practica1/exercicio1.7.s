@@ -8,7 +8,7 @@
 	.eabi_attribute 30, 2
 	.eabi_attribute 34, 0
 	.eabi_attribute 18, 4
-	.file	"main2.c"
+	.file	"suma.c"
 	.text
 	.section	.text.startup,"ax",%progbits
 	.align	1
