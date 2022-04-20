@@ -22,14 +22,14 @@
 
 2.1 -> Si, o código parece moito mais sinxelo, sen nada fora do main e con menos liñas dentro deste, soamente cargando dous valores nos rexistros e logo sumandoos.
 
-2.2 -> O código carga os valores 5 e 4 nos rexistros 0 e 1 respectivamente e despois súmaos e garda o resultado no rexistro 2. Todas as flags quedan a 0 (desactivadas). As instruccións add e mov son traducidas a adds e a movs, o que quere dicir que despois de cargar ou sumar o valor correspondente actualice as flags.
+2.1 -> O código carga os valores 5 e 4 nos rexistros 0 e 1 respectivamente e despois súmaos e garda o resultado no rexistro 2. Todas as flags quedan a 0 (desactivadas). As instruccións add e mov son traducidas a adds e a movs, o que quere dicir que despois de cargar ou sumar o valor correspondente actualice as flags.
 
-2.3 -> O programa modificado é exercicio2.3.s. Agora a flag N queda activada, pois o valor resultante da operación é un número negativo
+2.2 -> O programa modificado é exercicio2.3.s. Agora a flag N queda activada, pois o valor resultante da operación é un número negativo
 
-2.4 -> Se intentamos meter directamente adds o programa dá un erro cando o intentamos executar. Dinos que a instrucción non está soportada
+2.3 -> Se intentamos meter directamente adds o programa dá un erro cando o intentamos executar. Dinos que a instrucción non está soportada
 
-2.5 -> No programa exercicio2.5.s salta a flag C. No exercicio 2.5.1.s saltan as flags N e V
+2.4 -> No programa exercicio2.5.s salta a flag C. No exercicio 2.5.1.s saltan as flags N e V
 
-2.7 -> O código e moito mais curto, tanto dentro do main coma fora do main, pois limitase a cargar en memoria 4 e 5, traelos aos rexistros, sumalos e volver a gardar o resultado en memoria
+2.6 -> O código e moito mais curto, tanto dentro do main coma fora do main, pois limitase a cargar en memoria 4 e 5, traelos aos rexistros, sumalos e volver a gardar o resultado en memoria
 
-2.8 -> Para este programa a directiva .data é a sección do código onde van almacenadas as variables. A directiva .word quere dicirlle ao programa que reserve 32 bits en memoria para gardar o valor (4 ou 5, neste programa)
+2.7 -> Para este programa a directiva .data é a sección do código onde van almacenadas as variables. A directiva .word quere dicirlle ao programa que reserve 32 bits en memoria para gardar o valor (4 ou 5, neste programa)

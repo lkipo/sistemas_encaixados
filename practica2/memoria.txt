@@ -7,12 +7,20 @@
 1.2 -> Aparecen instruccións a partires da dirección 0x00180010 porque o ensamblador tenta interpretalo como instruccións pero non son instruccións realmente, só son direccións de memoria. Ocorre por casualidade
 
 1.3 -> Si, podemos observar as operacións lóxicas vistas en clase no programa loxica.s, aparecen:
-ands, orrs, mvns e movs, que son as operacións simplificadas de and, orr, mvn e mov
+ands, orrs, mvns e movs, que son as versións das operacións que fan saltar os flags de and, orr, mvn e mov. Programa comentado loxica.s
+
+1.4 -> programa comentado exercicio_1.4.s
 
 1.5 -> Observamos as instruccións push, ass, ldr, ldrb, lsls, asrs, movs e str, todas as cales foron vistas en clase.
 
 1.6 -> O programa exemplo_vector.s garda en memoria un vector e mais un valor. Despois vai sumando cada unha das compoñentes do vector co valor e vainas gardando todas na memsa dirección de memoria, sobreescribindoas.
 
-2. -> # FACER PROGRAMAS EN ENSAMBLADOR
+2.
 
+2.1 -> Para que o programa en cuestión funcione debemos empregar as instruccións de cargar e gardar números de 1 byte, ldrb e strb, as cales se empregan no psrograma exercicio_2.1.s nas liñas 10 e 15 respectivamente. Como o operador strb só garda un byte, pero o simulador funciona con números de 32 bits esto conlevaría un problema se o numero resultante da suma non é menor que 255, pois o resultado non sería correcto mais non saltaría ningún flag. Para evitar esto deberíamos facer unha comprobación, como por exemplo facer un menor que do número resultante e de 255.
 
+2.2 -> Para que o programa en cuestión funcione debemos empregar as instruccións de cargar e gardar números de 1 byte, ldrb e strb, as cales se empregan no psrograma exercicio_2.1.s nas liñas 10 e 15 respectivamente. Como o operador strb só garda un byte, pero o simulador funciona con números de 32 bits esto conlevaría un problema se o numero resultante da suma (ou resta) non está entre -256 e 255, pois o resultado non sería correcto mais non saltaría ningún flag. Para evitar esto deberíamos facer unha comprobación, como por exemplo facer un and do número menor que 255 e o número maior que 256. 
+
+2.3 -> O programa é exercicio_2.3.s
+
+2.4 -> O programa é exercicio_2.4.s

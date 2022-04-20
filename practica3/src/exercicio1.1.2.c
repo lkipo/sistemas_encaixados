@@ -1,11 +1,12 @@
 #include <stdint.h>
 
-uint32_t x, y, z;
+int32_t x, y, z;
+
 
 int main(void)
 {
-	x = 0x00000001;
-	y = 0xFFFFFFFF;
+	x = 1;
+	y = -1;
 
 	if (x > y)
 	{

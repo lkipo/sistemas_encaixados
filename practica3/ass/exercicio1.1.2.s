@@ -8,7 +8,7 @@
 	.eabi_attribute 30, 6
 	.eabi_attribute 34, 0
 	.eabi_attribute 18, 4
-	.file	"if_then_1.c"
+	.file	"exercicio1.1.2.c"
 	.text
 	.comm	x,4,4
 	.comm	y,4,4
@@ -37,13 +37,13 @@ main:
 	ldr	r2, [r3]
 	ldr	r3, .L5+4
 	ldr	r3, [r3]
-	cmp	r2, r3
-	bls	.L2
-	ldr	r3, .L5+8
+	cmp	r2, r3 @ compara
+	ble	.L2 @ if
+	ldr	r3, .L5+8 @ then 
 	movs	r2, #1
 	str	r2, [r3]
-	b	.L3
-.L2:
+	b	.L3 @ salta ao final do if
+.L2: @ else
 	ldr	r3, .L5+8
 	movs	r2, #0
 	str	r2, [r3]

@@ -8,22 +8,29 @@
 	.eabi_attribute 30, 6
 	.eabi_attribute 34, 0
 	.eabi_attribute 18, 4
-	.file	"loxica.c"
+	.file	"exercicio1.1.9.c"
 	.text
-	.global	a
+	.global	str
 	.data
 	.align	2
-	.type	a, %object
-	.size	a, 4
-a:
-	.word	4
-	.global	b
+	.type	str, %object
+	.size	str, 6
+str:
+	.ascii	"hello\000"
+	.global	len
+	.bss
 	.align	2
-	.type	b, %object
-	.size	b, 4
-b:
-	.word	5
-	.comm	c,4,4
+	.type	len, %object
+	.size	len, 4
+len:
+	.space	4
+	.global	p
+	.data
+	.align	2
+	.type	p, %object
+	.size	p, 4
+p:
+	.word	str
 	.text
 	.align	1
 	.global	main
@@ -38,42 +45,34 @@ main:
 	@ frame_needed = 1, uses_anonymous_args = 0
 	push	{r7, lr}
 	add	r7, sp, #0
-	ldr	r3, .L3
-	ldr	r2, [r3]
-	ldr	r3, .L3+4
+.L4:
+	ldr	r3, .L8
 	ldr	r3, [r3]
-	ands	r2, r3 @ operación and
-	ldr	r3, .L3+8
-	str	r2, [r3]
-	ldr	r3, .L3
-	ldr	r2, [r3]
-	ldr	r3, .L3+4
+	ldrb	r3, [r3]
+	cmp	r3, #0 @ compara p con 0 (final da cadea de caracteres)
+	beq	.L7 @ se e igual salta a l7 e acaba o programa
+	ldr	r3, .L8
 	ldr	r3, [r3]
-	orrs	r2, r3 @ operación or
-	ldr	r3, .L3+8
+	adds	r2, r3, #1
+	ldr	r3, .L8
 	str	r2, [r3]
-	ldr	r3, .L3
+	ldr	r3, .L8+4
 	ldr	r3, [r3]
-	mvns	r2, r3 @ operación not
-	ldr	r3, .L3+8
+	adds	r2, r3, #1
+	ldr	r3, .L8+4
 	str	r2, [r3]
-	ldr	r3, .L3
-	ldr	r2, [r3]
-	ldr	r3, .L3+4
-	ldr	r3, [r3]
-	eors	r2, r3 @ operación xor
-	ldr	r3, .L3+8
-	str	r2, [r3]
+	b	.L4 @ por ser un bucle infinito salta hacia l4 sempre que chegue ao fin do bucle (necesita un break)
+.L7:
+	nop
 	movs	r3, #0
 	movs	r0, r3
 	mov	sp, r7
 	@ sp needed
 	pop	{r7, pc}
-.L4:
+.L9:
 	.align	2
-.L3:
-	.word	a
-	.word	b
-	.word	c
+.L8:
+	.word	p
+	.word	len
 	.size	main, .-main
 	.ident	"GCC: (15:9-2019-q4-0ubuntu1) 9.2.1 20191025 (release) [ARM/arm-9-branch revision 277599]"

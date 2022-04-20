@@ -8,7 +8,7 @@
 	.eabi_attribute 30, 6
 	.eabi_attribute 34, 0
 	.eabi_attribute 18, 4
-	.file	"loxica.c"
+	.file	"exercicio1.1.3.c"
 	.text
 	.global	a
 	.data
@@ -16,14 +16,13 @@
 	.type	a, %object
 	.size	a, 4
 a:
-	.word	4
-	.global	b
+	.word	1
+	.global	x
 	.align	2
-	.type	b, %object
-	.size	b, 4
-b:
-	.word	5
-	.comm	c,4,4
+	.type	x, %object
+	.size	x, 4
+x:
+	.word	2
 	.text
 	.align	1
 	.global	main
@@ -38,42 +37,30 @@ main:
 	@ frame_needed = 1, uses_anonymous_args = 0
 	push	{r7, lr}
 	add	r7, sp, #0
-	ldr	r3, .L3
-	ldr	r2, [r3]
-	ldr	r3, .L3+4
+	ldr	r3, .L4
 	ldr	r3, [r3]
-	ands	r2, r3 @ operación and
-	ldr	r3, .L3+8
-	str	r2, [r3]
-	ldr	r3, .L3
-	ldr	r2, [r3]
-	ldr	r3, .L3+4
+	cmp	r3, #0 @ compara a con 0
+	bge	.L2 @ mira se 0 é mais grande e nese caso salta a L2 (non entra no if)
+	ldr	r3, .L4 @ then
 	ldr	r3, [r3]
-	orrs	r2, r3 @ operación or
-	ldr	r3, .L3+8
-	str	r2, [r3]
-	ldr	r3, .L3
+	rsbs	r2, r3, #0
+	ldr	r3, .L4
+	str	r2, [r3] @ final do if
+.L2: 
+	ldr	r3, .L4+4
 	ldr	r3, [r3]
-	mvns	r2, r3 @ operación not
-	ldr	r3, .L3+8
-	str	r2, [r3]
-	ldr	r3, .L3
-	ldr	r2, [r3]
-	ldr	r3, .L3+4
-	ldr	r3, [r3]
-	eors	r2, r3 @ operación xor
-	ldr	r3, .L3+8
+	adds	r2, r3, #1
+	ldr	r3, .L4+4
 	str	r2, [r3]
 	movs	r3, #0
 	movs	r0, r3
 	mov	sp, r7
 	@ sp needed
 	pop	{r7, pc}
-.L4:
+.L5:
 	.align	2
-.L3:
+.L4:
 	.word	a
-	.word	b
-	.word	c
+	.word	x
 	.size	main, .-main
 	.ident	"GCC: (15:9-2019-q4-0ubuntu1) 9.2.1 20191025 (release) [ARM/arm-9-branch revision 277599]"
