@@ -20,6 +20,7 @@
 #define PRIORITY1    ( tskIDLE_PRIORITY + 2 )
 #define PRIORITY2       ( tskIDLE_PRIORITY + 1 )
 
+// ↓ funcion sobre a cal se van a crear as tarefas
 static void vASimpleTask( void * pvParameters ){
 	configASSERT( ( *( int *) pvParameters ) > 1 );
 	int delay = *(int*) pvParameters;
@@ -42,13 +43,13 @@ void main_blinky( void )
                      configMINIMAL_STACK_SIZE, 
                      (void *) &delay1, 
                      PRIORITY1,
-                     &xHandle1); 
+                     &xHandle1);  // funcion para crear tarefas. Os parametros son, por este orde, funcion sobre a que queremos crear a tarefa, nome da tarefa, tamaño da pila que debemos reservar, parámetros, prioridade e unha referencia que neste caso é NULL
 
         xTaskCreate( vASimpleTask, "S2", configMINIMAL_STACK_SIZE, (void *) &delay2, PRIORITY2, &xHandle2);
 
-        vTaskStartScheduler();
+        vTaskStartScheduler(); // Aqui comeza o calendurizador
 
-    for( ; ; )
+    for( ; ; ) // Bucle infinito para que queden as tarefas executandose ate que o usuario finalize o programa
     {
     }
 }
