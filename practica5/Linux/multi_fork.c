@@ -8,7 +8,7 @@ int variable=5;
 
 void funcionFillo(int i){
 	pid_t pid;
-	sleep(i);
+	sleep(i); // espera i segundos
 	pid=getpid();
 	int exit_status=i+7;
 	printf("Son o proceso fillo %u, creoume meu pai %u.Variable=%d con direccion %p\n", pid, getppid(),variable,&variable);
@@ -19,16 +19,16 @@ void funcionFillo(int i){
 
 int main(){
 	pid_t pid;
-	pid_t pid_f[4];
+	pid_t pid_f[4]; 
 	pid_t ret=0;
 	int status,i;
 	
-	pid = getpid();
+	pid = getpid(); // definimos a variable pid coma o pid do programa principal
 	printf("Son o proceso %u\n", pid);
 	for(i=2;i<6;i++){
-		pid_f[i-2] = fork();
+		pid_f[i-2] = fork(); // creamos un proceso fillo en cada iteración do bucle
 		if(pid_f[i-2]==0){
-			funcionFillo(i);
+			funcionFillo(i); // invocamos á funcion funcionFiillo. So se invocará no proceso  fillo, pois no proceso pai o identificador do proceso fillo pid_f[i-2] nunca será cero.
 		}else{
 			printf("Son o proceso pai %u, creei o fillo %u. Variable=%d con direccion %p\n", pid, pid_f[i-2],variable,&variable);
 			variable= i*10;
@@ -37,9 +37,9 @@ int main(){
 	}
 
 	//Para quitar
-	ret = wait(&status);
-	printf("Son o proceso pai %u, o meu %u fillo acabou con saida %d. Variable=%d con direccion %p\n", pid, ret, WEXITSTATUS(status), variable,&variable);
-	exit(0);
+	//ret = wait(&status);
+	//printf("Son o proceso pai %u, o meu %u fillo acabou con saida %d. Variable=%d con direccion %p\n", pid, ret, WEXITSTATUS(status), variable,&variable);
+	//exit(0);
 	//Para quitar
 	
 	while(ret>=0){
