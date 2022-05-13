@@ -29,14 +29,14 @@ static void vTaskPrintCount( void * pvParameters ){
 	for(;;)
 	{
 		console_print( "Tarefa %s con retraso %d. Contador %u\n",pcTaskGetName(NULL),delay,ulIdleCycleCount);
-		vTaskDelay(xDelay);
+		vTaskDelay(xDelay); // mostra a tarefa e os ciclos de procesador percorridos dende o inicio do programa
 	}
 }
 
 //Nome obligatoria para o o Hook a Idle Task, non pode coller parámetros
 void vApplicationIdleHook( void )
 {
-    ulIdleCycleCount++;
+    ulIdleCycleCount++; // engade un ao contador de ciclos
 }
 
 void main_blinky( void )

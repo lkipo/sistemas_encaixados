@@ -22,13 +22,13 @@
 
 // ↓ funcion sobre a cal se van a crear as tarefas
 static void vASimpleTask( void * pvParameters ){
-	configASSERT( ( *( int *) pvParameters ) > 1 );
-	int delay = *(int*) pvParameters;
-	const TickType_t xDelay = delay / portTICK_PERIOD_MS;
+/bin/bash: .wq: orden no encontrada
+	int delay = *(int*) pvParameters; // recuperamos os parametros que pasamos á funcion
+	const TickType_t xDelay = delay / portTICK_PERIOD_MS; // dividimos o retraso en ms que queremos pasar entre o periodo do reloxo en ms para ter un retraso en ciclos de reloxo
 	for(;;)
 	{
 		console_print( "Tarefa %s con retraso %d\n",pcTaskGetName(NULL),delay );
-		vTaskDelay(xDelay);
+		vTaskDelay(xDelay); // funcion para xestionar o retraso
 	}
 }
 

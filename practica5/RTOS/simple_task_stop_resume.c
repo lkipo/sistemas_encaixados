@@ -21,12 +21,12 @@
 #define PRIORITY2       ( tskIDLE_PRIORITY + 1 )
 
 
-TaskHandle_t xHandleStopResume;
+TaskHandle_t xHandleStopResume; // punteiro á tarefa
 
 static void vASimpleTask( void * pvParameters ){
 	configASSERT( ( *( int *) pvParameters ) > 1 );
 	int delay = *(int*) pvParameters;
-	const TickType_t xDelay = delay / portTICK_PERIOD_MS;
+	const TickType_t xDelay = delay / portTICK_PERIOD_MS; // Definimos xDelay coma os ciclos de reloxo correspondentes a delay (ms) que se pasa como parámetro
 	for(;;)
 	{
 		console_print( "Tarefa %s con retraso %d\n",pcTaskGetName(NULL),delay );
@@ -42,10 +42,10 @@ static void vStopResume( void * pvParameters ){
 	{
 		vTaskDelay(xDelay);
 		console_print( "Reanudando %s\n",pcTaskGetName(xHandleStopResume));
-		vTaskResume(xHandleStopResume);
+		vTaskResume(xHandleStopResume); // Reanuda a tarefa
 		vTaskDelay(xDelay);
 		console_print( "Parando %s\n",pcTaskGetName(xHandleStopResume));
-		vTaskSuspend(xHandleStopResume);
+		vTaskSuspend(xHandleStopResume); // Pausa a tarefa
 	}
 }
 
@@ -63,12 +63,12 @@ void main_blinky( void )
                      PRIORITY1,
                      &xHandle1); 
 		
-        xHandleStopResume = xHandle1;
+        xHandleStopResume = xHandle1; // Declaramos xHandleStopResume como xHandle1 para que a funcion vStopResume o poida entender
 
-        xTaskCreate( vASimpleTask, "S2", configMINIMAL_STACK_SIZE, (void *) &delay2, PRIORITY2, &xHandle2);
-        xTaskCreate( vStopResume, "Stopper", configMINIMAL_STACK_SIZE, (void *) &delay3, PRIORITY2, NULL);
+        xTaskCreate( vASimpleTask, "S2", configMINIMAL_STACK_SIZE, (void *) &delay2, PRIORITY2, &xHandle2); // Creamos tarefa S2 con prioridade 2, delay2 (1 segundo) como parámetro e unha referencia ao punteiro da tarefa
+        xTaskCreate( vStopResume, "Stopper", configMINIMAL_STACK_SIZE, (void *) &delay3, PRIORITY2, NULL); // Creamos tarefa Stopper, con prioridade 2 e con delay3 (5 segundos) como parámetro
 
-        vTaskStartScheduler();
+        vTaskStartScheduler(); // Comenzar calendurizador
 
     for( ; ; )
     {

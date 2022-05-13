@@ -28,7 +28,7 @@ static void vASimpleTask( void * pvParameters ){
 	for(;;)
 	{
 		console_print( "Tarefa %s\n",pcTaskGetName(NULL));
-		for(delay=0;delay < DELAY_LOOP_COUNT; delay++ ){}
+		for(delay=0;delay < DELAY_LOOP_COUNT; delay++ ){} // facemos un bucle moi largo para "simular" a espera.
 	}
 }
 
@@ -41,11 +41,12 @@ void main_blinky( void )
                      configMINIMAL_STACK_SIZE, 
                      NULL, 
                      PRIORITY1,
-                     &xHandle1); 
+                     &xHandle1); // Creamos unha tarefa invocando á función vASimpleTask con prioridade 1 e referencia a xHandle2
 
-        xTaskCreate( vASimpleTask, "S2", configMINIMAL_STACK_SIZE, NULL, PRIORITY1, &xHandle2);
 
-        vTaskStartScheduler();
+        xTaskCreate( vASimpleTask, "S2", configMINIMAL_STACK_SIZE, NULL, PRIORITY2, &xHandle2); // Creamos unha tarefa invocando á función vASimpleTask con prioridade 1 e referencia a xHandle2
+
+        vTaskStartScheduler(); // Iniciamos calendurizador
 
     for( ; ; )
     {

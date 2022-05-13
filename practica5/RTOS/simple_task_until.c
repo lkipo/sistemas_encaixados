@@ -23,12 +23,12 @@
 static void vASimpleTask( void * pvParameters ){
 	configASSERT( ( *( int *) pvParameters ) > 1 );
 	int delay = *(int*) pvParameters;
-	TickType_t xLastWakeTime = xTaskGetTickCount();
+	TickType_t xLastWakeTime = xTaskGetTickCount(); // a variable xLastWakeTime inicializase co contador de ciclos actual, que é o que fai xTaskGetTickCount();
 	const TickType_t xDelay = pdMS_TO_TICKS(delay);
 	for(;;)
 	{
 		console_print( "Tarefa %s con retraso %d\n",pcTaskGetName(NULL),delay );
-		vTaskDelayUntil(&xLastWakeTime,xDelay);
+		vTaskDelayUntil(&xLastWakeTime,xDelay); // a funcion vTaskDelayUntil espera xDelay ciclos de reloxo dende xLastWakeTime.
 	}
 }
 

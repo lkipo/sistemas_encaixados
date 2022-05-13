@@ -8,4 +8,14 @@
 
 2. FreeRTOS
 
-2.1 -->
+2.1 --> O programa ten dúas tarefas creadas sobre a mesma función, unha que se executa cun retraso de 1 segundo e outra que se executa cun retraso de medio segundo. A tarefa que se executa con 0.5s de retraso ten prioridade sobre a outra, polo que cando coincide a tarefa 1 coa tarefa 2 (cada dúas iteracións da tarefa 1 ou cada iteración da tarefa 2) a tarefa 1 executase primeiro que a tarefa 2 por ter mais prioridade. Os parametros pasanse mediante un punteiro a vacío, polo que podemos pasar o que queiramos sempre que o coñezcamos para podelo usar despois con correctamente.
+
+2.2 --> Comentarios no código. A función vStopResume obten o handle da outra tarefa porque se pasa unha referencia cando se crea a tarefa a xHandle1, que é igual a xHandleStopResume
+
+2.3 --> O programa alterna entre dúas tarefas S1 e S2. A espera realizase mediante un bucle for moi longo. Se cambiamos PRIORITY1 por PRIORITY2 o programa non entra na segunda tarefa, pois sempre está ocupado e atenderá sempre ás tarefas de maior prioridade en caso de que estea moi ocupado.
+
+2.4 --> vTaskDelayUntill() é distinta a vTaskDelay() en tanto que vTaskDelay recibe como parámetro o número de ciclos de reloxo que deben transcorrer dende que se chama á función ate que a mesma tarefa volva ao estado bloqueado, mentres que vTaskDelayUntill especifica o ciclo de reloxo exacto no que a tarefa se debe mover dende Bloqueado a Listo, polo que poderíamos decir que vTaskDelay é relativa ao ciclo de reloxo no que se chama e que vTaskDelay non o é.
+
+2.5 --> O arquivo consta de tres tarefas. Duas continuas que se executan constantemente e que se intercambian entre si de maneira caótica por ter ambas a mesma prioridade (C1 e C2) e unha terceira tarefa, P1, a cal se executa unha vez cada 3 milisegundos, e se superpón ás outras dúas tarefas por ter maior prioridade
+
+2.6 --> Funciona inda que nunca se chame a vApplicationIdleHook porque no arquivo FreeRTOS.h o parametro configUSE_IDLE_HOOK esta posto a 1 (activado), polo que o programa entende que esa funcion se ten que utilizar.Funciona inda que nunca se chame a vApplicationIdleHook porque no arquivo FreeRTOS.h o parametro configUSE_IDLE_HOOK esta posto a 1 (activado), polo que o programa entende que esa funcion se ten que utilizar. 
